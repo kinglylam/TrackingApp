@@ -3,3 +3,8 @@ export { default as HomeActiveIcon } from './boxes-icon.svg';
 export { default as ScanIcon } from './barcode-scan-icon.svg';
 export { default as WalletIcon } from './wallet-icon.svg';
 export { default as ProfileIcon } from './avatar-icon.svg';
+export { default as NotificationIcon } from './noti.svg';
+export { default as HomeLogoIcon } from './homeLogo.svg';
+export { default as SearchIcon } from './search.svg';
+export { default as FilterIcon } from './filter.svg';
+export { default as AddScanIcon } from './add-scan.svg';
