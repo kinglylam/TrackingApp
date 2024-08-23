@@ -10,11 +10,11 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
-import { StackNavigationProps } from '../../navigation/types';
+import { RootNavigationProp } from '../../navigation/types';
 import Modal from 'react-native-modal';
 import {
   AppRoutes,
-  HomeRoutes,
+  TabRoutes,
 } from '../../navigation/types/app';
 import profilePic from '../../assets/profilePic.png';
 import {
@@ -27,6 +27,7 @@ import {
 import { pallets } from '../../constants';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
+import { PageWrapper } from '../../components/PageWrapper';
 const { height } = Dimensions.get('window');
 
 const HorizontalLine = () => {
@@ -36,15 +37,15 @@ const HorizontalLine = () => {
 const ShipmentScreen = ({
   navigation,
   route,
-}: StackNavigationProps<AppRoutes>) => {
+}: RootNavigationProp<AppRoutes, TabRoutes, 'Home'>) => {
   const [modalVisible, setModalVisible] = useState(false);
   const dismissKeyboard = () => {
     Keyboard.dismiss();
   };
   return (
-    <TouchableWithoutFeedback
-      onPress={() => dismissKeyboard()}>
-      <SafeAreaView>
+    <PageWrapper showDownInset={false}>
+      <TouchableWithoutFeedback
+        onPress={() => dismissKeyboard()}>
         <View style={styles.container}>
           <View style={styles.headerComp}>
             <Image source={profilePic} />
@@ -88,9 +89,9 @@ const ShipmentScreen = ({
           <Modal
             animationIn="slideInUp"
             animationOut="slideOutDown"
-            swipeDirection={['down']} // Allow swipe down to close the modal
-            propagateSwipe={true} // Propagate swipe gestures to the modal
-            onSwipeComplete={() => setModalVisible(false)} // Close modal on swipe
+            swipeDirection={['down']}
+            propagateSwipe={true}
+            onSwipeComplete={() => setModalVisible(false)}
             isVisible={modalVisible}
             style={styles.modal}>
             <View
@@ -107,8 +108,8 @@ const ShipmentScreen = ({
             </View>
           </Modal>
         </View>
-      </SafeAreaView>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+    </PageWrapper>
   );
 };
 

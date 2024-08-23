@@ -156,7 +156,6 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(136, 145, 139, 0.4)',
   },
   input: {
-    fontFamily: 'Poppins-Regular',
     color: pallets.black,
     flex: 1,
     alignItems: 'center',
