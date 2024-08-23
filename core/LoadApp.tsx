@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Alert, StatusBar } from 'react-native';
 import {
   LinkingOptions,
@@ -14,6 +14,7 @@ import { pallets } from '../constants';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { AuthContext } from '../context/AuthContext';
 // import { AxiosError } from 'axios';
 // import { ApiError } from '../types/global';
 // import { handleApiError } from '../utils/api';
@@ -45,15 +46,15 @@ export default function LoadApp() {
   //     onError: (err: AxiosError<ApiError>) =>
   //       handleApiError(err),
   //   });
-  const [token, setToken] = useState(
-    'zzztttyythhhukvlgfhliggugfyfgl...oolo',
-  );
+  const { token } = useContext(
+    AuthContext,
+  ) as AuthContextType;
 
   return (
     <>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>
-          <AuthNavigator />
+          {token ? <AppNavigator /> : <AuthNavigator />}
         </NavigationContainer>
       </GestureHandlerRootView>
     </>

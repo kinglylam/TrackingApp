@@ -13,4 +13,5 @@ export const pallets = {
   transparent: 'transparent',
   primaryBlue: 'rgba(47, 80, 193, 1)',
   backgroundGrey: 'rgba(244, 242, 248, 0.5)',
+  secondaryBlue: 'rgba(69, 97, 219, 1)',
 };

@@ -18,6 +18,7 @@ import SplashScreen from '../../screens/Auth/SplashScreen';
 import LoginScreen from '../../screens/Auth/LoginScreen';
 import { pallets } from '../../constants';
 import { useNavigation } from '@react-navigation/native';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 type Styles = {
   headerContainer: ViewStyle;
@@ -34,8 +35,15 @@ function CustomHeader() {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.horizontalLine} />
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text style={styles.cancelButton}>cancel</Text>
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={styles.Button}>
+        <AntDesign
+          name="left"
+          size={24}
+          color={pallets.secondaryBlue}
+        />
+        <Text style={styles.cancelButton}>Cancel</Text>
       </TouchableOpacity>
     </View>
   );
@@ -96,8 +104,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   cancelButton: {
-    marginLeft: 10,
-    color: pallets.primaryBlue,
+    color: pallets.secondaryBlue,
     fontSize: 20,
+  },
+  Button: {
+    flexDirection: 'row',
+    paddingVertical: 10,
   },
 });

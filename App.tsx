@@ -5,6 +5,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import LoadApp from './core/LoadApp';
+import AuthContextProvider from './context/AuthContext';
 import FlashMessage from 'react-native-flash-message';
 
 const queryClient = new QueryClient({
@@ -14,8 +15,10 @@ const queryClient = new QueryClient({
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <LoadApp />
-      <FlashMessage position="top" />
+      <AuthContextProvider>
+        <LoadApp />
+        <FlashMessage position="top" />
+      </AuthContextProvider>
     </QueryClientProvider>
   );
 }
