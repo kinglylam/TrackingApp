@@ -1,0 +1,16 @@
+export const pallets = {
+  white: '#ffffff',
+  grey: 'rgba(60, 60, 67, 0.6)',
+  blackShade: '#393A4A',
+  black: '#000000',
+  border: '#CDCED9',
+  borderGrey: '#CDCED9',
+  lightGrey: 'rgba(167, 163, 179, 1)',
+  bottombg: 'rgba(255, 255, 255, 1)',
+  red: '#DA1414',
+  lightRed: '#FEEFEF',
+  textSecondary: '#6B6C7E',
+  transparent: 'transparent',
+  primaryBlue: 'rgba(47, 80, 193, 1)',
+  backgroundGrey: 'rgba(244, 242, 248, 0.5)',
+};
