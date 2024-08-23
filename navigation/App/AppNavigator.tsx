@@ -4,14 +4,9 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from '@react-navigation/stack';
-import {
-  HomeStack,
-  SupportStack,
-  ProfileStack,
-  ErrandStack,
-  TabStack,
-} from './Navigators';
+
 import { AppRoutes } from '../types/app';
+import { TabStack } from './Navigators';
 // import useStoreProfile from '../../store/useProfile';
 // import useSaveCredentials from '../../store/useStore';
 
@@ -41,20 +36,6 @@ export default function AppNavigator() {
 
       <Group>
         <Screen name="TabStack" component={TabStack} />
-        <Screen name="HomeStack" component={HomeStack} />
-
-        <Screen
-          name="ProfileStack"
-          component={ProfileStack}
-        />
-        <Screen
-          name="SupportStack"
-          component={SupportStack}
-        />
-        <Screen
-          name="ErrandStack"
-          component={ErrandStack}
-        />
       </Group>
     </Navigator>
   );

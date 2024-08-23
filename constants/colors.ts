@@ -9,7 +9,7 @@ export const pallets = {
   bottombg: 'rgba(255, 255, 255, 1)',
   red: '#DA1414',
   lightRed: '#FEEFEF',
-  textSecondary: '#6B6C7E',
+  textSecondary: 'rgba(47, 80, 193, 1)',
   transparent: 'transparent',
   primaryBlue: 'rgba(47, 80, 193, 1)',
   backgroundGrey: 'rgba(244, 242, 248, 0.5)',

@@ -4,33 +4,30 @@ import { RouteProp } from '@react-navigation/native';
 
 import { TabRoutes } from '../../types/app';
 import { pallets } from '../../../constants';
-import { Text } from '../../../components/Text';
-import {
-  HomeIcon,
-  ProfileIcon,
-  ErrandIcon,
-  SupportIcon,
-  SupportActiveIcon,
-  HomeActiveIcon,
-  ErrandActiveIcon,
-  ProfileActiveIcon,
-} from '../../../assets/icons';
+// import { Text } from '../../../components/Text';
 
 import {
   Platform,
   StyleSheet,
   TouchableOpacity,
   View,
+  Text,
 } from 'react-native';
 import { RF } from '../../../helpers';
 import { Dimensions } from 'react-native';
+import {
+  HomeActiveIcon,
+  ProfileIcon,
+  ScanIcon,
+  WalletIcon,
+} from '../../../assets/icons';
+import ShipmentScreen from '../../../screens/Home/ShipmentScreen';
+import ScanScreen from '../../../screens/Scan/ScanScreen';
+import WalletScreen from '../../../screens/Wallet/WalletScreen';
+import ProfileScreen from '../../../screens/Profile/ProfileScreen';
 // import Animated, {
 //   useSharedValue,
 // } from 'react-native-reanimated';
-import DashBoard from '../../../screens/Home/DashBoard';
-import Errands from '../../../screens/Errands/Errands';
-import Support from '../../../screens/Support/Support';
-import Profile from '../../../screens/Profile/Profile';
 
 const { Navigator, Screen } =
   createBottomTabNavigator<TabRoutes>();
@@ -45,6 +42,7 @@ export default function TabNavigator() {
           <TouchableOpacity
             onPress={() => console.log('klk')}
             {...props}
+            activeOpacity={0.7}
           />
         ),
 
@@ -57,11 +55,12 @@ export default function TabNavigator() {
           alignSelf: 'center',
           height: Platform.OS === 'android' ? 68 : 79,
           paddingHorizontal: 10,
+          paddingVertical: 13,
         },
       })}>
       <Screen
         name="Home"
-        component={DashBoard}
+        component={ShipmentScreen}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, focused }) => (
@@ -81,9 +80,8 @@ export default function TabNavigator() {
                       style={[
                         styles.activeText,
                         { marginStart: 4 },
-                      ]}
-                      fontWeight="750">
-                      Home
+                      ]}>
+                      Shipments
                     </Text>
                   </View>
                   {/* <View style={[styles.active]}>
@@ -94,9 +92,9 @@ export default function TabNavigator() {
               ) : (
                 <>
                   <View style={styles.inactive}>
-                    <HomeIcon />
+                    <WalletIcon />
                     <Text style={styles.inactiveText}>
-                      Home
+                      Shipments
                     </Text>
                   </View>
                 </>
@@ -107,29 +105,27 @@ export default function TabNavigator() {
       />
 
       <Screen
-        name="Errand"
-        component={Errands}
+        name="Scan"
+        component={ScanScreen}
         options={{
-          tabBarLabel: 'Errand',
+          tabBarLabel: 'Scan',
           tabBarIcon: ({ color, focused }) => (
             <>
               {focused ? (
                 <>
                   <View style={styles.active}>
-                    <ErrandActiveIcon />
-                    <Text
-                      style={styles.activeText}
-                      fontWeight="750">
-                      Errands
+                    <ScanIcon />
+                    <Text style={styles.activeText}>
+                      Scan
                     </Text>
                   </View>
                 </>
               ) : (
                 <>
                   <View style={styles.inactive}>
-                    <ErrandIcon />
+                    <ScanIcon />
                     <Text style={styles.inactiveText}>
-                      Errands
+                      Scan
                     </Text>
                   </View>
                 </>
@@ -139,8 +135,8 @@ export default function TabNavigator() {
         }}
       />
       <Screen
-        name="Support"
-        component={Support}
+        name="Wallet"
+        component={WalletScreen}
         options={{
           tabBarLabel: 'Support',
           tabBarIcon: ({ color, focused }) => (
@@ -148,11 +144,9 @@ export default function TabNavigator() {
               {focused ? (
                 <>
                   <View style={styles.active}>
-                    <SupportActiveIcon />
-                    <Text
-                      style={styles.activeText}
-                      fontWeight="750">
-                      Support
+                    <WalletIcon />
+                    <Text style={styles.activeText}>
+                      Wallet
                     </Text>
                   </View>
                   {/* <TouchableOpacity
@@ -168,9 +162,9 @@ export default function TabNavigator() {
               ) : (
                 <>
                   <View style={styles.inactive}>
-                    <SupportIcon />
+                    <WalletIcon />
                     <Text style={styles.inactiveText}>
-                      Support
+                      Wallet
                     </Text>
                   </View>
                 </>
@@ -182,7 +176,7 @@ export default function TabNavigator() {
 
       <Screen
         name="Profile"
-        component={Profile}
+        component={ProfileScreen}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, focused, size }) => (
@@ -190,10 +184,8 @@ export default function TabNavigator() {
               {focused ? (
                 <>
                   <View style={styles.active}>
-                    <ProfileActiveIcon />
-                    <Text
-                      style={styles.activeText}
-                      fontWeight="750">
+                    <ProfileIcon />
+                    <Text style={styles.activeText}>
                       Profile
                     </Text>
                   </View>
@@ -232,22 +224,22 @@ const styles = StyleSheet.create({
     minWidth: 80,
   },
   activeText: {
-    color: pallets.primaryTextColor,
+    color: pallets.primaryBlue,
     fontSize: RF(9),
     marginTop: 4,
     marginStart: 1,
-    fontWeight: '600',
+    fontWeight: '400',
   },
   inactive: {
     alignItems: 'center',
     minWidth: 0,
   },
   inactiveText: {
-    color: pallets.greyText,
+    color: pallets.grey,
     fontSize: RF(9),
     marginTop: 4,
     marginStart: 1,
-    fontWeight: '600',
+    fontWeight: '400',
   },
 });
 //   const getTabIcon = (

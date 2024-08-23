@@ -1,13 +1,22 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import SplashScreen from "./component/SplashScreen";
-import LoginScreen from "./component/LoginScreen";
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+import LoadApp from './core/LoadApp';
+import FlashMessage from 'react-native-flash-message';
+
+const queryClient = new QueryClient({
+  defaultOptions: {},
+});
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <SplashScreen />
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <LoadApp />
+      <FlashMessage position="top" />
+    </QueryClientProvider>
   );
 }
 
