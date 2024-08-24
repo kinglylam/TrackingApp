@@ -65,7 +65,7 @@ const SplashScreen = ({
           },
         ]}>
         <Animated.Image
-          source={require('../../assets/Group 1.png')}
+          source={require('../../assets/Group1.png')}
           style={{ width: logoSize, height: logoSize }}
         />
       </Animated.View>
