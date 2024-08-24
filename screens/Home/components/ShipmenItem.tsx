@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Shipment } from '../../../types/shipment';
-import Box from '../../../assets/box 1.png';
+import Box from '../../../assets/box1.png';
 import {
   ArrowExpandIcon,
   SmallArrowRightIcon,
