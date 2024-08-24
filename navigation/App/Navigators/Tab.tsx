@@ -67,14 +67,7 @@ export default function TabNavigator() {
             <>
               {focused ? (
                 <>
-                  <View
-                    style={[
-                      styles.active,
-                      {
-                        // width: widths,
-                        // backgroundColor: 'violet',
-                      },
-                    ]}>
+                  <View style={[styles.active, {}]}>
                     <HomeActiveIcon />
                     <Text
                       style={[
@@ -84,10 +77,6 @@ export default function TabNavigator() {
                       Shipments
                     </Text>
                   </View>
-                  {/* <View style={[styles.active]}>
-                    <HomeActiveIcon />
-                    <Text style={styles.activeText} fontWeight='750'>Home</Text>
-                  </View> */}
                 </>
               ) : (
                 <>
@@ -149,15 +138,6 @@ export default function TabNavigator() {
                       Wallet
                     </Text>
                   </View>
-                  {/* <TouchableOpacity
-                    onPress={() => {
-                      console.log('jhj')
-                    }}
-                    style={styles.active}>
-                    <CommunityActiveIcon />
-                    <Text style={styles.activeText} fontWeight='750'>Connect</Text>
-
-                  </TouchableOpacity> */}
                 </>
               ) : (
                 <>
@@ -189,11 +169,6 @@ export default function TabNavigator() {
                       Profile
                     </Text>
                   </View>
-                  {/* <View style={[styles.active,]}>
-                    <ShopActiveIcon />
-                    <Text style={styles.activeText} fontWeight='750'>Shop</Text>
-
-                  </View> */}
                 </>
               ) : (
                 <>
@@ -209,8 +184,6 @@ export default function TabNavigator() {
           ),
         }}
       />
-
-      {/* <Screen name="Home" component={CommunityHome} /> */}
     </Navigator>
   );
 }
@@ -242,30 +215,3 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
 });
-//   const getTabIcon = (
-//     route: RouteProp<TabRoutes, keyof TabRoutes>,
-//     focused: boolean,
-//   ): JSX.Element | null => {
-//     switch (route.name) {
-//       case 'Home':
-//         return focused ? (
-//           <HomeeIcon />
-//         ) : (
-//           <HomeeIcon color={pallets.textSecondary} />
-//         );
-
-//       case 'Shop':
-//         return focused ? (
-//           // <Entypo name="location" size={24} color={pallets.tab} />
-//           <ShopIcon />
-//         ) : (
-//           <ShopIcon />
-//         );
-
-//       case 'Profile':
-//         return focused ? <ProfileIcon /> : <ProfileIcon />;
-
-//       default:
-//         return null;
-//     }
-//   };

@@ -23,17 +23,6 @@ export default function AppNavigator() {
       screenOptions={{
         headerShown: false,
       }}>
-      {/* {!status?.isVendorOnboard && (
-        <>
-          <Group>
-            <Screen
-              name="OnboardingStack"
-              component={OnboardingStack}
-            />
-          </Group>
-        </>
-      )} */}
-
       <Group>
         <Screen name="TabStack" component={TabStack} />
       </Group>

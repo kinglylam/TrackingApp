@@ -10,10 +10,8 @@ import {
 import { pallets } from '../../constants';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
-import { AxiosError } from 'axios';
-import { ApiError } from '../../types/global';
+
 import { AuthContext } from '../../context/AuthContext';
-import { handleApiError } from '../../utils/api';
 
 interface Inputs {
   email: string;

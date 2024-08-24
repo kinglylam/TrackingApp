@@ -54,9 +54,9 @@ export default function AuthNavigator() {
     cardStyleInterpolator:
       CardStyleInterpolators.forModalPresentationIOS,
     headerShown: true,
-    headerTitle: '', // No title
+    headerTitle: '',
     headerStyle: {
-      height: 60, // Adjust the height to fit the horizontal line and button
+      height: 60,
     },
     header: () => <CustomHeader />,
     presentation: 'modal',
@@ -96,9 +96,9 @@ const styles = StyleSheet.create({
   horizontalLine: {
     position: 'absolute',
     top: 0,
-    left: '40%',
+    left: '44%',
     height: 7,
-    backgroundColor: pallets.grey, // Light gray line
+    backgroundColor: pallets.grey,
     width: '20%',
     alignSelf: 'center',
     borderRadius: 8,

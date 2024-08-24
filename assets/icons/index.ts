@@ -8,3 +8,5 @@ export { default as HomeLogoIcon } from './homeLogo.svg';
 export { default as SearchIcon } from './search.svg';
 export { default as FilterIcon } from './filter.svg';
 export { default as AddScanIcon } from './add-scan.svg';
+export { default as ArrowExpandIcon } from './arrow-expand.svg';
+export { default as SmallArrowRightIcon } from './smallArrowRight.svg';
