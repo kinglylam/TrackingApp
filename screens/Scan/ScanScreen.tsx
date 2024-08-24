@@ -19,7 +19,7 @@ const ScanScreen = () => {
       <Text>Scan</Text>
       <Text>Scan</Text>
       <Text>Scan</Text>
-      <ShipmentList />
+      {/* <ShipmentList /> */}
       {/* <ShipmentItem item={item} /> */}
     </View>
   );

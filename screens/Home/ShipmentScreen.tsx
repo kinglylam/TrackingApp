@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
+  Pressable,
 } from 'react-native';
 import { RootNavigationProp } from '../../navigation/types';
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -41,14 +42,36 @@ const ShipmentScreen = ({
   navigation,
   route,
 }: RootNavigationProp<AppRoutes, TabRoutes, 'Home'>) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [markAll, setMarkAll] = useState(false);
+  const [modalVisible, setModalVisible] =
+    useState<boolean>(false);
+  const [markAll, setMarkAll] = useState<boolean>(false);
+  const [selectedStatus, setSelectedStatus] = useState<
+    string | null
+  >(null);
   const dismissKeyboard = () => {
     Keyboard.dismiss();
   };
 
   const handleToggle = () => {
     setMarkAll(prevState => !prevState);
+  };
+
+  const shipmentStatuses = [
+    'Received',
+    'Putaway',
+    'Delivered',
+    'Canceled',
+    'Rejected',
+    'Lost',
+    'On Hold',
+  ];
+
+  const handleStatusSelect = (status: string) => {
+    setSelectedStatus(status);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
   };
   return (
     <PageWrapper showDownInset={false}>
@@ -129,10 +152,47 @@ const ShipmentScreen = ({
               { height: height * 0.37 },
             ]}>
             <HorizontalLine />
-            <View>
-              <Text>Received</Text>
-              <Text>Received</Text>
-              <Text>Received</Text>
+            <View style={styles.modalContent}>
+              <View style={styles.header}>
+                <TouchableOpacity onPress={closeModal}>
+                  <Text style={styles.cancelButton}>
+                    Cancel
+                  </Text>
+                </TouchableOpacity>
+                <Text style={styles.title}>Filters</Text>
+                <TouchableOpacity onPress={closeModal}>
+                  <Text style={styles.doneButton}>
+                    Done
+                  </Text>
+                </TouchableOpacity>
+              </View>
+
+              <Text style={styles.subTitle}>
+                SHIPMENT STATUS
+              </Text>
+              <View style={styles.statusContainer}>
+                {shipmentStatuses.map(status => (
+                  <Pressable
+                    key={status}
+                    onPress={() =>
+                      handleStatusSelect(status)
+                    }
+                    style={[
+                      styles.statusButton,
+                      selectedStatus === status &&
+                        styles.selectedStatusButton,
+                    ]}>
+                    <Text
+                      style={[
+                        styles.statusButtonText,
+                        selectedStatus === status &&
+                          styles.selectedStatusButtonText,
+                      ]}>
+                      {status}
+                    </Text>
+                  </Pressable>
+                ))}
+              </View>
             </View>
           </View>
         </Modal>
@@ -230,6 +290,62 @@ const styles = StyleSheet.create({
     width: 20,
     borderWidth: 1,
     borderColor: 'rgba(208, 213, 221, 1)',
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    padding: 20,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E0E0E0',
+    paddingBottom: 10,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  cancelButton: {
+    color: '#007AFF',
+    fontSize: 16,
+  },
+  doneButton: {
+    color: '#007AFF',
+    fontSize: 16,
+  },
+  subTitle: {
+    marginTop: 20,
+    fontSize: 14,
+    color: '#888888',
+    marginBottom: 10,
+  },
+  statusContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+  },
+  statusButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    backgroundColor: '#F5F5F5',
+    marginRight: 10,
+    marginBottom: 10,
+  },
+  selectedStatusButton: {
+    backgroundColor: '#E0E0E0',
+  },
+  statusButtonText: {
+    color: '#333333',
+    fontSize: 14,
+  },
+  selectedStatusButtonText: {
+    fontWeight: '600',
   },
 });
 

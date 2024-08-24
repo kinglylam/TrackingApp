@@ -28,10 +28,26 @@ const ShipmentItem: React.FC<ShipmentItemProps> = ({
   //   console.log('Shipment Item:', item);
   const [isExpanded, setIsExpanded] =
     useState<boolean>(false);
+
+  const [mark, setMark] = useState<boolean>(false);
+
+  const handleToggle = () => {
+    setMark(prevState => !prevState);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.checkBoxContainer}></View>
+        <TouchableOpacity onPress={handleToggle}>
+          {mark ? (
+            <AntDesign
+              name="checksquareo"
+              size={20}
+              color="rgba(208, 213, 221, 1)"
+            />
+          ) : (
+            <View style={styles.checkBoxContainer}></View>
+          )}
+        </TouchableOpacity>
         <Image source={Box} />
         <View>
           <Text style={styles.awbText}>AWB</Text>

@@ -136,6 +136,7 @@ const ShipmentList = () => {
         onEndReached={onEndReached}
         onEndReachedThreshold={0.5}
         ListEmptyComponent={renderEmptyComponent}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
