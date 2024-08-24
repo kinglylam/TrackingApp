@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    gap: 3,
   },
   awbText: {
     color: 'rgba(63, 57, 92, 1)',
