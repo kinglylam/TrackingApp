@@ -42,7 +42,7 @@ const ShipmentList = () => {
       );
 
       const data: Shipment[] = response.data.message;
-      console.log(data);
+      // console.log(data);
       if (Array.isArray(data)) {
         if (reset) {
           setShipments(data.slice(0, 15));

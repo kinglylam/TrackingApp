@@ -3,7 +3,12 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { Alert, StatusBar } from 'react-native';
+import {
+  Alert,
+  StatusBar,
+  ActivityIndicator, // Added for fallback UI
+  View, // Added for fallback UI
+} from 'react-native';
 import {
   NavigationContainer,
   LinkingOptions,
@@ -21,15 +26,6 @@ import { AuthRoutes } from '../navigation/types';
 // Prevent auto-hiding of the splash screen
 SplashScreen.preventAutoHideAsync();
 
-// Optional: Configure deep linking if needed
-const linking: LinkingOptions<AuthRoutes> = {
-  config: {
-    initialRouteName: 'SplashScreen',
-    screens: {},
-  },
-  prefixes: ['divic://'],
-};
-
 const LoadApp = () => {
   const { token } = useContext(
     AuthContext,
@@ -40,25 +36,37 @@ const LoadApp = () => {
   useEffect(() => {
     const prepare = async () => {
       try {
+        console.log('Preparing app...');
+
         // Simulate some async loading tasks (e.g., fetching data)
         await new Promise(resolve =>
           setTimeout(resolve, 1000),
         );
+        console.log('Simulated loading done');
 
         // Check for app updates if not in development mode
         if (!__DEV__) {
+          console.log('Checking for updates...');
           const update =
             await Updates.checkForUpdateAsync();
           if (update.isAvailable) {
+            console.log('Update available, fetching...');
             await Updates.fetchUpdateAsync();
+            console.log('Update fetched, reloading...');
             await Updates.reloadAsync();
+          } else {
+            console.log('No update available');
           }
         }
       } catch (e) {
-        console.warn(e);
+        console.warn('Error during preparation:', e);
       } finally {
+        console.log(
+          'Preparation done, setting ready to true...',
+        );
         setIsReady(true);
         await SplashScreen.hideAsync();
+        console.log('Splash screen hidden');
       }
     };
 
@@ -66,13 +74,23 @@ const LoadApp = () => {
   }, []);
 
   if (!isReady) {
-    return null; // Or a loading indicator
+    // Fallback UI while the app is preparing
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
   }
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar barStyle="dark-content" />
-      <NavigationContainer linking={linking}>
+      <NavigationContainer>
         {token ? <AppNavigator /> : <AuthNavigator />}
       </NavigationContainer>
     </GestureHandlerRootView>

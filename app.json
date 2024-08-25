@@ -4,10 +4,10 @@
     "slug": "ShipmentTrackerApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/Group1.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/Group1.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
