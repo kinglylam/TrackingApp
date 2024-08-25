@@ -12,12 +12,9 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import { Shipment } from '../../../types/shipment';
-import ShipmentItem from './ShipmenItem';
-import {
-  saveShipmentsToStorage,
-  getShipmentsFromStorage,
-} from '../../../store/useStore';
+
 import { pallets } from '../../../constants';
+import ShipmentItem from './ShipmenItem';
 
 const ShipmentList = () => {
   const [shipments, setShipments] = useState<Shipment[]>(
@@ -58,7 +55,6 @@ const ShipmentList = () => {
           setPage(prevPage => prevPage + 1);
         }
         setHasMore(data.length === 10);
-        await saveShipmentsToStorage(data); // Save to storage
       } else {
         console.error(
           'Unexpected API response structure:',
@@ -74,17 +70,7 @@ const ShipmentList = () => {
   };
 
   useEffect(() => {
-    const loadData = async () => {
-      const storedShipments =
-        await getShipmentsFromStorage();
-      if (storedShipments.length > 0) {
-        setShipments(storedShipments);
-      } else {
-        await fetchShipments(true);
-      }
-    };
-
-    loadData();
+    fetchShipments(true);
   }, []);
 
   const onRefresh = async () => {
@@ -100,13 +86,9 @@ const ShipmentList = () => {
   };
 
   const renderShipmentItem = useCallback(
-    ({
-      item,
-      index,
-    }: {
-      item: Shipment;
-      index: number;
-    }) => <ShipmentItem item={item} />,
+    ({ item }: { item: Shipment }) => (
+      <ShipmentItem item={item} />
+    ),
     [],
   );
 
